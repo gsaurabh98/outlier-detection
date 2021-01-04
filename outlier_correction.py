@@ -22,30 +22,30 @@ def outlier_correction(dataframe,
         pd.dataFrame
             pandas dataframe
     '''
-    
+
     df = dataframe.copy()
     for col_name in numeric_features:
 
-        if config[col_name] == 'Mean':
+        if config[col_name].lower() == 'mean':
             df.loc[indexes[col_name], col_name] = round(df[col_name].mean(), 2)
 
-        elif config[col_name] == "Median":
+        elif config[col_name].lower() == "median":
             df.loc[indexes[col_name], col_name] = round(df[col_name].median(),
                                                         2)
 
-        elif config[col_name] == "Delete data":
-            df.drop(df.index[indexes[col_name]], axis=0,
-                    inplace=True)
-
-        elif config[col_name] == "Min":
+        elif config[col_name].lower() == "min":
             df.loc[indexes[col_name], col_name] = round(dataframe[
                                                             col_name].min(), 2)
 
-        elif config[col_name] == "Max":
+        elif config[col_name].lower() == "max":
             df.loc[indexes[col_name], col_name] = round(dataframe[
                                                             col_name].max(), 2)
 
-        elif config[col_name] == 'Ignore':
+        elif config[col_name].lower() == "delete":
+            df.drop(df.index[indexes[col_name]], axis=0,
+                    inplace=True)
+            
+        elif config[col_name].lower() == 'ignore':
             pass
 
     return df
