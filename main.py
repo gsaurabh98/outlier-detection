@@ -31,7 +31,6 @@ def main(dataframe, config):
 
 if __name__ == '__main__':
     df = pd.read_csv('input.csv')
-    df = df.fillna(value=1000)
 
     with open('config.json', 'r') as con:
         config = json.load(con)
