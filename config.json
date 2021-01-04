@@ -1,0 +1,12 @@
+{
+  "outlier_detection":{
+    "high_GPA":"Factor Method",
+    "comp_GPA":"Inter-Quartile Range",
+    "univ_GPA":"Z-score"
+  },
+  "outlier_correction":{
+    "high_GPA":"Mean",
+    "comp_GPA":"Median",
+    "univ_GPA":"Delete"
+  }
+}
