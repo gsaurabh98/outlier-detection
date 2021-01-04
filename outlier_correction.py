@@ -1,5 +1,6 @@
 def outlier_correction(dataframe,
-                       numeric_features, config,
+                       numeric_features,
+                       config,
                        indexes):
     '''
         This function correct the outliers present in the numeric features
@@ -14,13 +15,14 @@ def outlier_correction(dataframe,
             dictionary of outlier correction method
         indexes: dict
             dictionary of outlier indexes
-        
+
 
         Returns
         ------------
-        dict
-            outlier index and outlier count
+        pd.dataFrame
+            pandas dataframe
     '''
+    
     df = dataframe.copy()
     for col_name in numeric_features:
 
