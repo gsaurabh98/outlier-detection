@@ -1,9 +1,11 @@
 import numpy as np
 
 
-def outlier_detection(dataframe, numeric_features, config):
+def outlier_detection(dataframe,
+                      numeric_features,
+                      config):
     '''
-    This function detects the outliers present in the numeric features
+    This function detect the outliers present in the numeric features
 
     Parameters
     ------------
@@ -25,7 +27,7 @@ def outlier_detection(dataframe, numeric_features, config):
 
     for col in numeric_features:
 
-        if config[col] == 'Factor Method':
+        if config[col].lower() == 'factor method':
             index_list = []
             data_mean, data_std, data_median = dataframe[col].mean(), \
                                                dataframe[col].std(), \
@@ -41,22 +43,21 @@ def outlier_detection(dataframe, numeric_features, config):
             outlier_count.update({col: count})
             outlier_index.update({col: index_list})
 
-        elif config[col] == 'Z-score':
+        elif config[col].lower() == 'z-score':
 
             index_list = []
             threshold = 3
-            mean = np.mean(dataframe[col])
-            std = np.std(dataframe[col])
             count = 0
             for index, value in dataframe[col].iteritems():
-                z_scores = (value - mean) / std
+                z_scores = (value - np.mean(dataframe[col])) / np.std(
+                    dataframe[col])
                 if z_scores > threshold:
                     index_list.append(index)
                     count = count + 1
             outlier_count.update({col: count})
             outlier_index.update({col: index_list})
 
-        elif config[col] == 'Inter-Quartile Range':
+        elif config[col].lower() == 'inter-quartile range':
 
             index_list = []
             q25, q75 = np.percentile(dataframe[col], 25), np.percentile(
