@@ -2,10 +2,10 @@
 
 import pandas as pd
 import streamlit as st
-from outlier import outlier_detection
 from outlier import outlier_correction
+from outlier import outlier_detection
 
-st.title('Outliers Detection/Correction')
+st.title('Outlier Detection/Correction')
 
 st.markdown(
     '<span><i>Outlier is an observation that lies an abnormal distance from other values!</i></span>',
@@ -50,14 +50,14 @@ if uploaded_file is not None:
         if st.sidebar.button('Submit', key="check_outlier"):
 
             outlier_indexes, outlier_count = outlier_detection(dataframe,
-                                                              features,
-                                                              detection_method)
-            
-            print('outlier_indexes',outlier_indexes)
+                                                               features,
+                                                               detection_method)
+
+            print('outlier_indexes', outlier_indexes)
 
             unique_indexes = list(
-                set([v for values in outlier_indexes.values() for v in values]))
-
+                set([v for values in outlier_indexes.values() for v in
+                     values]))
 
             df = pd.DataFrame(outlier_count, index=['count'])
 
@@ -69,7 +69,7 @@ if uploaded_file is not None:
             else:
                 st.markdown('<b>Outlier(s) count</b>', unsafe_allow_html=True)
                 st.table(df)
-                
+
                 st.markdown('<b>Outlier(s) Index</b>', unsafe_allow_html=True)
                 st.json(outlier_indexes)
 
@@ -80,7 +80,6 @@ if uploaded_file is not None:
 
                 df = output.loc[output.index.isin(unique_indexes)]
                 st.table(df)
-
 
                 # def highlight_cols(s, features):
                 #     if s.name in features:
