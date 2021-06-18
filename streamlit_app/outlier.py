@@ -68,6 +68,7 @@ def outlier_detection(dataframe,
             count = 0
             for index, value in dataframe[col].iteritems():
                 if value < lower or value > upper:
+                    index_list.append(index)
                     count = count + 1
             outlier_count.update({col: count})
             outlier_index.update({col: index_list})
