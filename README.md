@@ -21,3 +21,4 @@
  
  ```streamlit run app.py ```
  
+![image info](./screen.png)
